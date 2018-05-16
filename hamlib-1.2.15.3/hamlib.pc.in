@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: hamlib
+Description: Library to control radio and rotator equipment.
+URL: @PACKAGE_URL@
+Requires: 
+Version: @VERSION@
+Libs: -L${libdir} -lhamlib @MATH_LIBS@
+Cflags: -I${includedir}
