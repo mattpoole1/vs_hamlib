@@ -1,9 +1,38 @@
-To use gpredict with M2 RC2800 Positioner:
-==========================================
+Hamlib Software + Utilities for Venture Southland UHF Ground Station
+====================================================================
 
 Author: Matthew Poole
 Email: matt.poole1@gmail.com
 Date: 10th April 2018
+
+## Making Changes:
+1. Make a new branch in which you can make and test your changes
+`git branch <your-branch>`
+2. Change to your new branch
+`git checkout <your-branch>`
+3. Now you can freely make changes and test them
+4. To backup any local changes to your current branch
+```
+git add .
+git commit -m "<Your message describing changes>"
+git push
+```
+5. Once you are happy your changes work as planned, merge your branch with master
+```
+git checkout master
+git merge <your-branch>
+```
+6. If there are conflicts to resolve, use `git diff` to highlight these conflicts, then resolve them in a text editor. Once all conflicts have been resolved, push the edited files to the master branch.
+```
+git add .
+git commit -m "Resolved conflicts by review"
+git push
+```
+7. Delete your branch as all changes are now in the master branch
+`git branch -d <your-branch>
+
+Using the M2 RC2800 Antenna Positioner
+======================================
 
 ## Initial Setup:
 1. Launch gpredict (/usr/local/bin/gpredict)
@@ -20,11 +49,7 @@ Date: 10th April 2018
 
 ## Before Using
 1. Launch a terminal anywhere
-2. Type: 'rotctld -m 1001 -r /dev/ttyS0 -t 4533 <-vvvvv>' to open the port to the Azimuth controller. Use the -v options for verbose mode.
-3. Launch another terminal, keeping the first open.
-4. Type: 'rotctld -m 1002 -r /dev/ttyUSB0 -t 4535 <-vvvvv>' to open the port to the Elevation controller. Use the -v options for verbose mode.
-5. Launch another terminal in /home/technician/Hamlib
-6. Type 'python gptom2.py 4537 4533 4535' Note the order of these port numbers is important!
+2. Run the command `. rot.sh` to run the utility background programs.
 
 ## To use
 1. Navigate into your desired Gpredict module
