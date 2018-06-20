@@ -1316,6 +1316,9 @@ struct rig_caps {
   int (*set_mem_all_cb) (RIG * rig, chan_cb_t chan_cb, confval_cb_t parm_cb, rig_ptr_t);
   int (*get_mem_all_cb) (RIG * rig, chan_cb_t chan_cb, confval_cb_t parm_cb, rig_ptr_t);
 
+  int (*dummy_command1) (RIG * rig, int pass);
+  int (*dummy_command2) (RIG * rig, freq_t centre, freq_t doppler);
+
   const char *clone_combo_set;	/*!< String describing key combination to enter load cloning mode */
   const char *clone_combo_get;	/*!< String describing key combination to enter save cloning mode */
 };
@@ -1647,6 +1650,8 @@ extern HAMLIB_EXPORT(int) rig_get_mem_all HAMLIB_PARAMS((RIG *rig, channel_t *ch
 extern HAMLIB_EXPORT(const chan_t *) rig_lookup_mem_caps HAMLIB_PARAMS((RIG *rig, int ch));
 extern HAMLIB_EXPORT(int) rig_mem_count HAMLIB_PARAMS((RIG *rig));
 
+extern HAMLIB_EXPORT(int) rig_dummy_command1 HAMLIB_PARAMS((RIG *rig, int pass));
+extern HAMLIB_EXPORT(int) rig_dummy_command2 HAMLIB_PARAMS((RIG *rig, freq_t centre, freq_t doppler));
 
 extern HAMLIB_EXPORT(int) rig_set_trn HAMLIB_PARAMS((RIG *rig, int trn));
 extern HAMLIB_EXPORT(int) rig_get_trn HAMLIB_PARAMS((RIG *rig, int *trn));
@@ -1692,6 +1697,8 @@ extern HAMLIB_EXPORT(int) rig_load_all_backends HAMLIB_PARAMS((void));
 typedef int (*rig_probe_func_t)(const hamlib_port_t *, rig_model_t, rig_ptr_t);
 extern HAMLIB_EXPORT(int) rig_probe_all HAMLIB_PARAMS((hamlib_port_t *p, rig_probe_func_t, rig_ptr_t));
 extern HAMLIB_EXPORT(rig_model_t) rig_probe HAMLIB_PARAMS((hamlib_port_t *p));
+
+
 
 
 /* Misc calls */

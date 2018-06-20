@@ -58,7 +58,7 @@ def forward_to_controller(data):
     return (az_data, el_data)
 
 
-DEBUG = 0
+DEBUG = 1
 TCP_IP = 'localhost' # Denotes localhost
 GP_PORT = int(sys.argv[1]) #Second argument
 AZ_PORT = int(sys.argv[2]) #Third

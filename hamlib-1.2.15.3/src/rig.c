@@ -2899,4 +2899,55 @@ const char* HAMLIB_API rig_get_info(RIG *rig)
 	return rig->caps->get_info(rig);
 }
 
+/**
+ * \brief do nothing
+ * \param rig	The rig handle
+ *
+ * \return RIG_ENAVAIL to notify this command is unavailable. 
+ * Designed to stop errors for commands designed for another rig
+ *
+ * \sa rig_dummy_command1
+ */
+
+int HAMLIB_API rig_dummy_command1(RIG *rig, int pass)
+{
+
+        const struct rig_caps *caps;
+
+	if (CHECK_RIG_ARG(rig))
+		return -RIG_EINVAL;
+
+	caps = rig->caps;
+
+	if (caps->dummy_command1 == NULL)
+		return -RIG_ENAVAIL;
+
+	return RIG_OK;
+}
+
+/**
+ * \brief do nothing
+ * \param rig	The rig handle
+ *
+ * \return RIG_ENAVAIL to notify this command is unavailable. 
+ * Designed to stop errors for commands designed for another rig
+ *
+ * \sa rig_dummy_command2
+ */
+
+int HAMLIB_API rig_dummy_command2(RIG *rig, freq_t centre, freq_t doppler)
+{
+
+        const struct rig_caps *caps;
+
+	if (CHECK_RIG_ARG(rig))
+		return -RIG_EINVAL;
+
+	caps = rig->caps;
+
+	if (caps->dummy_command1 == NULL)
+		return -RIG_ENAVAIL;
+
+	return RIG_OK;
+}
 /*! @} */

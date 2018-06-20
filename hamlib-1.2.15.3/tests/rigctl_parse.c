@@ -72,6 +72,8 @@ static pthread_mutex_t rig_mutex = PTHREAD_MUTEX_INITIALIZER;
 #define ARG_IN  (ARG_IN1|ARG_IN2|ARG_IN3|ARG_IN4)
 #define ARG_OUT  (ARG_OUT1|ARG_OUT2|ARG_OUT3|ARG_OUT4)
 
+#define ARG_NONE 0
+
 struct test_table {
 	unsigned char cmd;
 	const char *name;
@@ -157,6 +159,8 @@ declare_proto_rig(send_dtmf);
 declare_proto_rig(recv_dtmf);
 declare_proto_rig(chk_vfo);
 declare_proto_rig(halt);
+declare_proto_rig(dummy_command1);
+declare_proto_rig(dummy_command2);
 
 
 /*
@@ -234,6 +238,9 @@ static struct test_table test_list[] = {
 	{ 0x8f,"dump_state",        dump_state,     ARG_OUT|ARG_NOVFO },
 	{ 0xf0,"chk_vfo",           chk_vfo,        ARG_NOVFO },	/* rigctld only--check for VFO mode */
 	{ 0xf1,"halt",              halt,           ARG_NOVFO },	/* rigctld only--halt the daemon */
+        {  '5',"dummy_command1",    dummy_command1, ARG_IN, "Pass" },
+	{ 0xf1,"halt",              halt,           ARG_NOVFO },	/* rigctld only--halt the daemon */
+        {  '6',"dummy_command2",    dummy_command2, ARG_IN, "Centre", "Doppler"  },  
 	{ 0x00, "", NULL },
 };
 
@@ -454,7 +461,7 @@ int rigctl_parse(RIG *my_rig, FILE *fin, FILE *fout, char *argv[], int argc)
 	cmd_entry = find_cmd_entry(cmd);
 	if (!cmd_entry) {
 		fprintf(stderr, "Command '%c' not found!\n", cmd);
-		return 0;
+		return 1;
 	}
 
 	p1 = p2 = p3 = NULL;
@@ -2300,5 +2307,17 @@ declare_proto_rig(halt)
     exit(0);
 
 	return RIG_OK;
+}
+
+/* '5' */
+declare_proto_rig(dummy_command1)
+{
+    return RIG_OK;
+}
+
+/* '6' */
+declare_proto_rig(dummy_command2)
+{
+    return RIG_OK;
 }
 

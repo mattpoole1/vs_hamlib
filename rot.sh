@@ -25,8 +25,8 @@ AZ_MODEL=1001
 EL_MODEL=1002
 
 # Define serial ports connected to Azimuth and Elevation controllers
-AZ_CON=/dev/ttyMP0
-EL_CON=/dev/ttyMP1
+AZ_CON=/dev/ttyS0
+EL_CON=/dev/ttyUSB3
 
 # Define TCP ports that the Hamlib TCP servers open on
 AZ_PORT=4533
